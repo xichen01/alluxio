@@ -150,6 +150,18 @@ public class LocalFirstRaftClient implements Closeable {
     }
   }
 
+  /**
+   * Restarts internal remote client if enabled.
+   *
+   * @throws IOException
+   */
+  public void restartClient() throws IOException {
+    if (mClient != null) {
+      close();
+    }
+    ensureClient();
+  }
+
   @Override
   public void close() throws IOException {
     if (mClient != null) {
